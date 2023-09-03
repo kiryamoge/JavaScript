@@ -1,145 +1,82 @@
-//Задание 1
-//Перепишите код с использованием тернарного оператора
-//let country = 'Sweden';
-//let access;
-//if (country == 'Sweden') {
-//access = true;
-//} else{
-//access = false;
-//}
-
-let country = 'Sweden';
-let access = country == 'Sweden' ?  true : false;
-alert(access);
-
-
 //Задание 2
-//Создать переменную и записать в нее число, например 10.
-//10 раз увеличить значение этой переменной на 1. Итоговый результат вывести в консоль.
-let number = 10;
-for(let  i = 0; i < 10; i++){
-   number++;
-}
-console.log(number);
-
-
- //Задание 3
- //Увеличивая счетчик цикла на 2, нужно 5 раз выполнить след. действия:
- //- запросить у пользователя ввод числа
- //- проверить, равно ли это число 10. Если равно, вывести в консоль "Равно 10". Иначе вывести "Не равно 10"
- //В итоге должно получиться 5 запросов и 5 результатов в консоли.
-
- for (let i = 0; i < 10; i += 2){     
-    let num = +prompt('Введите число');
-    if(num === 10){
-        console.log('Равно 10');
-   } else{
-    console.log('Не равно 10'); 
- }
- } 
-
-
- //Задание 4
- //Вывести в консоль квадраты чисел от 0 до 100 (не включая 100) - т.е. вывести числа 0, 1, 4, 9, 16...
- //** Задавать количество чисел, которые нужно вывести, при помощи функции prompt.
-
-let square = prompt('Введите количество чисел');
-for (let i = 0; i <= square ; i++){
-    console.log('Квадрат' + i + '=' + i*i);
-      }
- 
-
-//Задание 5
-//Напишите программу, которая выводит в консоль числа от 1 до 100.
-//При этом вместо чисел, кратных трем, программа должна выводить слово «Fizz», а вместо чисел, кратных пяти, — слово «Buzz». Если число кратно и 3, и 5, то программа должна выводить слово «FizzBuzz»
-
- for (let i = 0; i <= 100; i++){
-    if(i % 3 === 0 && i % 5 ===0){  
-        console.log('FizzBuzz');
-    } else if(i % 3 === 0){
-        console.log('Fizz');
-    } else if(i % 5 === 0){
-        console.log('Buzz');
-    } else {
-        console.log(i);
-    }
- }
-
- //Задание 6
-//Перепишите код, заменив цикл for на while, без изменения поведения цикла.
-
-//for (let i = 0; i < 3; i++) {
-//alert( `number ${i}!` );
+//Дан объект с именами и заработными платами:
+//const engineers = {
+//Den: 1000,
+//Matt: 5000,
+//Steve: 2000
 //}
- // Ниже решение:
-let i = 0;
-while (i < 3){
-    i += 1;
-    alert(`number ${i}!` );
+//Вывести в консоль через шаблонные строки заработную плату всех работников в таком формате:
+//Заработная плата ххх составляет ххх рублей.
+
+const engineers = {
+    Den: 1000,
+    Matt: 5000,
+    Steve: 2000
+    }
+    for (let property in engineers){
+        console.log(`Заработная плата ${property} составляет ${engineers[property]}`);
+    }
+
+
+//    Задание 5
+//Дан массив объектов, например:
+//let questions = [{
+ //   question: "What's the currency of the USA?",
+ //   choices: ["US dollar", "Ruble", "Horses", "Gold"],
+  //  corAnswer: 0
+//}, {
+ //   question: "Where was the American Declaration of Independence signed?",
+ //   choices: ["Philadelphia", "At the bottom", "Frankie's Pub", "China"],
+ //   corAnswer: 0
+//}];
+//Добавить в каждый объект дополнительное поле usersAnswer со значением null.
+//Решение должно работать для массива любой длины.
+
+let questions = [{
+    question: "What's the currency of the USA?",
+    choices: ["US dollar", "Ruble", "Horses", "Gold"],
+    corAnswer: 0
+}, {
+    question: "Where was the American Declaration of Independence signed?",
+    choices: ["Philadelphia", "At the bottom", "Frankie's Pub", "China"],
+    corAnswer: 0
+}];
+
+for ( let i = 0; i < questions.length; i++){
+   questions[i].usersAnswer = null; 
+    console.log(questions);
 }
 
-//Задание 7
-//Переписать задание 4 в виде функции. Т.е. описать функцию, которая выводит квадраты чисел из заданного диапазона (диапазон будет попадать в функцию как аргументы - min и max).
-//let square = prompt('Введите количество чисел');
-//for (let i = 0; i <= square ; i++){
- //   console.log('Квадрат' + i + '=' + i*i);
- //     }
-   // Решение:
- let numbersone = 56;
- function defSguare (min, max){
-    for (let i = min; i <= max ; i++){
-        console.log(i ** 2);
+
+//Задание 9
+//Существует массив объектов, описывающих пользователей, например:
+//const users = [{name: 'Vasya', age: 23}, {name: 'Olya', age: 12}, {name: 'Anna', age: 22}, {name: 'Alex', age: 18}, {name: 'Valery', age: 8}]
+//Пройти в цикле по массиву и вывести имена всех пользователей, возраст которых больше 15.
+
+const users = [{name: 'Vasya', age: 23}, {name: 'Olya', age: 12}, {name: 'Anna', age: 22}, {name: 'Alex', age: 18}, {name: 'Valery', age: 8}]
+    function nameAge(users, Age) {
+        let result = [];
+        for (let key in users){
+            if (users[key].age > Age){
+                result.push(users[key].name);  
+            }        
+        }
+        return result;
     }
- }
- defSguare(1,20);
- defSguare(4,numbersone);
+    console.log(nameAge(users, 15).join(' '));
 
 
- //Задание 8
-//Написать функцию, котрая возвращает строку - случайный цвет в формате rgb. Это будет строка вида "rgb(10,55,250)"
-//Здесь у вас будет две функции: одна ваша - getRandomRGB, а вторая - функция получения случайного числа в диапазоне min - max. Вот эта функция (просто скопируйте, она уже готова):
-//function getRandomInteger(min, max) {
-//return Math.floor(Math.random() * (max - min)) + min;
-//}
-//Подсказки: 
-//- Каждый цвет - 3 числа, каждое число лежит в диапазоне от 0 до 255. 
-//- Одна функция может вызывать другую функцию
+ //   Задание 10
+ //   Задать массив слов. Например:
+  //  let vegetables = ["морковь", "баклажан", "репа", "топинамбур"];
+ //   1) Создать новый массив. С помощью цикла наполнить его объектами с ключами word (само слово), length (длина слова): 
+  //  [{word:'морковь', length: 7}, {word:'баклажан', length: 8} и т.п.] 
+  //  Вывести этот массив в консоль. 
+  //  Подсказка: длину строки можно определить с помощью метода .length. Например, для переменной let string = 'text' это будет string.length (результат - 4, т.к. слово text состоит из 4 символов) 
+  //  2) Пройтись по полученному массиву объектов и вывести в консоль строки вида "слово - длина_слова", например "картошка - 8"
 
-function getRandomRGB (){
-    return `rgb(${getRandomInteger(0,255)},${getRandomInteger(0,255)},${getRandomInteger(0,255)})`
+let vegetables = ["морковь", "баклажан", "репа", "топинамбур"];
+let newVegetables = [];
+for( let i = 0; i < vegetables; i++){  // Не получилось найти способ решения
+
 }
-
-function getRandomInteger(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-    }
-    console.log(getRandomInteger(35,70))
-   
-
-//    Задание 9
-//Написать функцию, которая принимает целое число n.   
-//Внутри функции запустить цикл от 1 до n с шагом 0.5. На каждой итерации цикла выводить в консоль текущее число (i) и информацию о том, целое ли оно.
-//Такая функция не будет ничего возвращать, она просто выводит информацию в консоль.
-//Пример, при запуске функции с параметром 3:
-//"1 integer"
-//"1.5 decimal"
-//"2 integer"
-//"2.5 decimal"
-
-
-
-
-//Задание 10
-//Написать функцию calcPrice, которая рассчитывает и выводит в консоль стоимость аренды авто на кол-во дней, которое приходит в функцию как параметр.
-//День аренды автомобиля стоит $40. При аренде на 7 или больше дней вы получаете общую итоговую скидку $50. Если вы арендуете авто на 3 или более дней, ваша общая скидка составит $20.
-function calcPrice (days){
-    const price = 40;
-    let discount = 0;
-    if (days >= 7){
-        discount = 50;
-    } else if (days >= 3){
-        discount = 20;
-    }
-}
-return days * price - discount;
-
-console.log(calcPrice(3));
