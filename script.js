@@ -1,82 +1,114 @@
-//Задание 2
-//Дан объект с именами и заработными платами:
-//const engineers = {
-//Den: 1000,
-//Matt: 5000,
-//Steve: 2000
-//}
-//Вывести в консоль через шаблонные строки заработную плату всех работников в таком формате:
-//Заработная плата ххх составляет ххх рублей.
+//Задание 1
+//Написать функцию, которая принимает два параметра и складывает их.
+//Предусмотреть проверку на тип данных. Если хоть один из параметров не является числом, должно выводиться ообщение об ошибке. Также обраьботайте случай, если не было введено два параметра.
+//Примеры результатов вызова функции:
+//sum(2,4); // 6
+//sum('d',4); // введенные данные не являются числами
+//sum(1, [2]); // введенные данные не являются числами
+//sum(1); // введите два параметра
+//sum(); // введите два параметра
 
-const engineers = {
-    Den: 1000,
-    Matt: 5000,
-    Steve: 2000
+const sum = (a, b) => {
+    if(a && b === undefined){
+        console.error("Введите два параметра")
+    } else if(typeof a !== 'number'){
+        console.error("Введение данные не являются числами")
+    } else if(typeof b !== 'number'){
+        console.error("Введение данные не являются числами")
+    } else {
+        console.log(a + b);
     }
-    for (let property in engineers){
-        console.log(`Заработная плата ${property} составляет ${engineers[property]}`);
-    }
-
-
-//    Задание 5
-//Дан массив объектов, например:
-//let questions = [{
- //   question: "What's the currency of the USA?",
- //   choices: ["US dollar", "Ruble", "Horses", "Gold"],
-  //  corAnswer: 0
-//}, {
- //   question: "Where was the American Declaration of Independence signed?",
- //   choices: ["Philadelphia", "At the bottom", "Frankie's Pub", "China"],
- //   corAnswer: 0
-//}];
-//Добавить в каждый объект дополнительное поле usersAnswer со значением null.
-//Решение должно работать для массива любой длины.
-
-let questions = [{
-    question: "What's the currency of the USA?",
-    choices: ["US dollar", "Ruble", "Horses", "Gold"],
-    corAnswer: 0
-}, {
-    question: "Where was the American Declaration of Independence signed?",
-    choices: ["Philadelphia", "At the bottom", "Frankie's Pub", "China"],
-    corAnswer: 0
-}];
-
-for ( let i = 0; i < questions.length; i++){
-   questions[i].usersAnswer = null; 
-    console.log(questions);
 }
+
+sum(5, 88);
+
+
+//Задание 3
+//Создать функцию "угадай число". Она принимает число от 1 до 10 (обязательно проверить, что число не больше 10 и не меньше 0). Генерирует рандомное число от 1 до 10 и сравнивает с заданным числом.
+//Если они совпали, то возвращает “Вы выиграли”, если нет - то “Вы не угадали, ваше число -  ...,  а выпало число ...”
+//Функция создания случайного числа уже была ранее в материалах, в задаче по созданию случайного цвета.
+//Написать функцию в стрелочном синтаксисе.
+
+let guessnumber = prompt('Введите число');
+const getRandomNumbers = () => {
+    if(getRandomNumbers === guessnumber){
+        console.log('Вы выиграли')
+    } else {
+        console.log(`Вы не угадали, ваше число ${guessnumber}, а выпало число ${getRandomInteger}`)
+    }
+}
+
+function getRandomInteger(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
+    console.log(getRandomInteger(1,10));  // Тут возникли трудности 
+
+
+ //   Задание 4
+//Напишите функцию copyArr(arr), которая копирует массив, не изменяя оригинал. Используйте подходящий метод массива - forEach или map.
+
+ const arr = [22, 4, 5, 7];
+ const copyArr = arr.slice();
+ console.log(copyArr);
+
+
+ //Задание 5
+//Напишите функцию, которая принимает массив имен и возвращает новый массив, в котором каждое имя будет иметь приставку "Hello, "
+
+const names = ['Vasya', 'Olya', 'Kolya'];
+const helloName = names.map(item) => {
+    return('Hello' + names)
+}
+onsole.log(helloName); // Не работает!
+
+//Задание 6
+//Напишите функцию, которая принимает массив объектов пользователей и возвращает новый массив, содержащий только их имена.
+
+
+//    Задание 7
+//Создайте функцию sumObjectValues, которая будет суммировать все значения свойств, которые являются числами. Сумму чисел необходимо вернуть из функции.
+//Проверить работу функции можно на объекте:
+
+const objectWithNumbers = {
+  a: 10,
+  b: 20,
+  c: 'string',
+  d: 12,
+}
+
+let  sumObjectValues = (objectWithNumbers) => {
+    let sumObjectValues = 0;
+    for(let key in objectWithNumbers){
+        if (typeof objectWithNumbers[key] == 'number'){
+            sumObjectValues += objectWithNumbers[key];
+        }
+    }
+    return sumObjectValues;
+}
+console.log(sumObjectValues(objectWithNumbers));
+
+
+//Задание 8
+//Напишите функцию ucFirst(str), возвращающую строку str с заглавным первым символом.
+//Вам понадобятся методы строк.
+
+
+let ucFirst = (str) => {
+    if (!str) return str;
+    return str[0].toUpperCase() + str.slice(1);
+}
+console.log(ucFirst('kirill'));
 
 
 //Задание 9
-//Существует массив объектов, описывающих пользователей, например:
-//const users = [{name: 'Vasya', age: 23}, {name: 'Olya', age: 12}, {name: 'Anna', age: 22}, {name: 'Alex', age: 18}, {name: 'Valery', age: 8}]
-//Пройти в цикле по массиву и вывести имена всех пользователей, возраст которых больше 15.
+//Напишите функцию checkSpam(str), возвращающую true, если str содержит 'badWord' или 'XXX', а иначе false.
+//Функция должна быть нечувствительна к регистру.
 
-const users = [{name: 'Vasya', age: 23}, {name: 'Olya', age: 12}, {name: 'Anna', age: 22}, {name: 'Alex', age: 18}, {name: 'Valery', age: 8}]
-    function nameAge(users, Age) {
-        let result = [];
-        for (let key in users){
-            if (users[key].age > Age){
-                result.push(users[key].name);  
-            }        
-        }
-        return result;
-    }
-    console.log(nameAge(users, 15).join(' '));
-
-
- //   Задание 10
- //   Задать массив слов. Например:
-  //  let vegetables = ["морковь", "баклажан", "репа", "топинамбур"];
- //   1) Создать новый массив. С помощью цикла наполнить его объектами с ключами word (само слово), length (длина слова): 
-  //  [{word:'морковь', length: 7}, {word:'баклажан', length: 8} и т.п.] 
-  //  Вывести этот массив в консоль. 
-  //  Подсказка: длину строки можно определить с помощью метода .length. Например, для переменной let string = 'text' это будет string.length (результат - 4, т.к. слово text состоит из 4 символов) 
-  //  2) Пройтись по полученному массиву объектов и вывести в консоль строки вида "слово - длина_слова", например "картошка - 8"
-
-let vegetables = ["морковь", "баклажан", "репа", "топинамбур"];
-let newVegetables = [];
-for( let i = 0; i < vegetables; i++){  // Не получилось найти способ решения
-
-}
+let checkSpam = (str) => {
+    let lowerStr = str.toLowerCase();
+    return lowerStr.includes('badWord') || lowerStr.includes('XXX');
+  }
+  
+  console.log(checkSpam('ok badWord'));
+  console.log(checkSpam('no XXX'));
