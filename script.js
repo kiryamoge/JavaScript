@@ -1,141 +1,164 @@
-//Задание 1
-//Написать функцию, которая принимает два параметра и складывает их.
-//Предусмотреть проверку на тип данных. Если хоть один из параметров не является числом, должно выводиться ообщение об ошибке. Также обраьботайте случай, если не было введено два параметра.
-//Примеры результатов вызова функции:
-//sum(2,4); // 6
-//sum('d',4); // введенные данные не являются числами
-//sum(1, [2]); // введенные данные не являются числами
-//sum(1); // введите два параметра
-//sum(); // введите два параметра
+//Задание 10
+//Написать функцию, которой на вход подается строка, на выход она дает символы наоборот (разворачивает строку). Пример: «привет, Женя» -> «янеЖ ,тевирп»
+//Обратите внимание: метод reverse существует только у массивов.
+const string = 'Привет, Кирилл';
+function reverseString(string) {
+    return string.split('').reverse().join('');
+}
+console.log(reverseString(string));
 
-const sum = (a, b) => {
-    if(a && b === undefined){
-        console.error("Введите два параметра")
-    } else if(typeof a !== 'number'){
-        console.error("Введение данные не являются числами")
-    } else if(typeof b !== 'number'){
-        console.error("Введение данные не являются числами")
+//Задание 11
+//Массив содержит строки с информацией о железнодорожных станциях на севере Англии. Строки представляют собой трёхбуквенный код станции, затем некоторые машиночитаемые данные, за которыми следует точка с запятой, а затем название станции, пригодное для чтения человеком. 
+//let stations = [
+//'MAN675847583748sjt567654;Manchester Piccadilly',
+//'GNF576746573fhdg4737dh4;Greenfield',
+//'LIV5hg65hd737456236dch46dg4;Liverpool Lime Street',
+//'SYB4f65hf75f736463;Stalybridge',
+//'HUD5767ghtyfyr4536dh45dg45dg3;Huddersfield'
+//];
+//Необходимо извлечь код станции и имя и поместить их в строку со следующей структурой:
+//MAN: Manchester Piccadilly
+//Вывести эти строки в консоль
+//ПОДСКАЗКА:
+//1. Извлеките трёхбуквенный код станции и сохраните его в новой переменной.
+//2. Найдите номер символьного номера точки с запятой.
+//3. Извлеките название для чтения человеком, используя номер индекса точки с запятой в качестве контрольной точки и сохраните его в новой переменной.
+//4. Объедините две новые переменные и строк
+
+let stations = [
+
+    'MAN675847583748sjt567654;Manchester Piccadilly',
+    
+    'GNF576746573fhdg4737dh4;Greenfield',
+    
+    'LIV5hg65hd737456236dch46dg4;Liverpool Lime Street',
+    
+    'SYB4f65hf75f736463;Stalybridge',
+    
+    'HUD5767ghtyfyr4536dh45dg45dg3;Huddersfield'
+    
+    ];
+ stations.forEach(item => newstations.slice(0, 3))
+
+//Задание 12
+//Напишите функцию unique(arr), которая принимает массив, а возвращает новый массив, содержащий только уникальные элементы arr.
+//Пример:
+//let strings = ["кришна", "кришна", "харе", "харе", "харе", "харе", "кришна", "кришна", ":-O"];
+//console.log(unique(strings) ); должен вывести "кришна, харе, :-O"
+//ПОДСКАЗКА
+//- создать новый массив
+//- обойти исходный массив, если элемент отсутствует в новом - добавлять его в новый. Таким образом в новый добавятся только уникальные.
+
+let strings = ["кришна", "кришна", "харе", "харе", "харе", "харе", "кришна", "кришна", ":-O"];
+function unique(arr){
+    let result = [];
+    for (let str of arr){
+      if (!result.includes(str)){
+        result.push(str);
+      }
+    }
+    return result;
+  }
+  console.log(unique(strings));  
+
+
+//Задание 13
+
+//Женя и Юля изучают кошек. Каждая из них узнала у 10 владельцев кошек о возрасте их кошки и сохранила данные в массиве (по одному массиву для каждой девочки). На данный момент им просто интересно узнать, является ли кошка взрослой или котёнком.
+//Кошка считается взрослой, если ей не менее 2 лет, и котёнком, если ей менее 2 лет.
+//Создайте функцию verifyCats, которая принимает 2 массива возрастов кошек (catsJane и catsJulia) и выполняет следующие действия:
+//1. Женя выяснила, что владельцы первой и последней кошки на самом деле имеют собак, а не кошек! Поэтому удалите возраст собак из Жениного массива.
+//2. Создайте общий массив с данными Жени (исправленными) и Юли.
+//3. Для каждой кошки этого общего массива выведите в консоль текст:
+//- если кошка взрослая -  Кошка № 1 взрослая, ей 6 лет
+//- если котёнок - Кошка № 2 ещё котёнок
+//4. Вызовите функцию для двух наборов тестовых данных.
+//Тестовые данные:
+//1.  Данные Жени [4, 5, 3, 11, 6, 2, 4, 1, 5, 9]
+//Данные Юли [2, 4, 5, 1, 13, 2, 15, 8, 3, 7]
+//2.  Данные Жени [3, 5, 9, 14, 1, 2, 6, 8, 3, 10]
+//Данные Юли [8, 2, 10, 1, 2, 5, 6, 3, 1, 4]
+//В задании необходимо использовать методы массивов: forEach, slice, concat
+
+const verifyCats = (catsJane, catsJulia) => {
+  const newCatsJane = catsJane.slice(1, catsJane.length - 1);
+  const allCats = newCatsJane.concat(catsJulia);
+  allCats.array.forEach((item, index) => {
+    if(item >=2){
+      console.log(`Кошка № ${index +1} взрослая, ей ${item} лет`)
     } else {
-        console.log(a + b);
+      console.log(`Кошка № ${index +1} еще котенок`)
     }
+  })
+}
+verifyCats([4, 5, 3, 11, 6, 2, 4, 1, 5, 9], [2, 4, 5, 1, 13, 2, 15, 8, 3, 7])
+verifyCats([3, 5, 9, 14, 1, 2, 6, 8, 3, 10], [8, 2, 10, 1, 2, 5, 6, 3, 1, 4])
+
+//Задание 14
+//Решить 4 задание из прошлой темы, используя метод filter
+//Определить массив, например let arr = [5, 4, 3, 8, 0];
+//Создать функцию filterFor(arr, a). Функция должна вернуть новый массив из элементов arr, но в нем должны содержаться элементы, которые больше или равны (>=) значения переменной a.
+//Например, запуск функции filterFor(arr, 5) дает результат [5,8]
+//запуск функции filterFor(arr, 10) дает результат []
+//запуск функции filterFor(arr, 3.11) дает результат [4,5,8]
+
+let arr = [5, 4, 3, 8, 0];
+let resultfilter = arr.filterFor((arr, a) => {
+    return arr >= a;
+    return resultfilter;
+})
+filterFor(arr, 3);
+console.log(resultfilter(arr));
+
+
+
+//Задание 15
+//Описать функцию, которая принимает массив строк и возвращает массив, содержащий только строки более 3-х символов. Проверить работу функции на примере:  ['yes', 'hello', 'no', 'easycode', 'what'].
+const words =  ['yes', 'hello', 'no', 'easycode', 'what'];
+const wordsFilter = arr => {
+  return arr.filter(item => item.length >= 3).length;
+}
+console.log(wordsFilter(words));
+
+
+
+//Задание 1 Встроенные объекты.
+//Примените каждый из этих методов округления к трем числам: 5.4, 5.5, 5.6:
+//Math.round(x)
+//Math.ceil(x)
+//Math.floor(x)
+//В комментариях к каждой строке напишите, как работают эти округления.
+
+console.log(Math.round(5.4));//Данный метод округляет число до ближайшего целого (отбрасывает дробную часть) по правилам математики. То есть, если десятичная часть числа >=5 , тогда округление срабатывает в большую сторону. Если меньше — тогда в меньшую сторону
+console.log(Math.round(5.5));
+console.log(Math.round(5.6));
+
+console.log(Math.ceil(5.4)); // Округляет в большую сторону.
+console.log(Math.ceil(5.5));
+console.log(Math.ceil(5.6));
+
+console.log(Math.floor(5.4)); // Округляет в меньшую сторону. 
+console.log(Math.floor(5.5));
+console.log(Math.floor(5.6));
+
+
+//Задание 2 Встроенные объекты.
+//Выведите в консоль фразы в 2 строки:
+//Сегодня 27 октября 2022 (здесь будет ваша дата) - используйте options для вывода месяца словом
+//19 часов 20 минут (здесь будет ваше время) - используйте шаблонную строку, в которую подставьте значения с помощью методов getHours() и getMinutes()
+
+let date = new Date();
+let optionsone = {
+    day:'numeric',
+    month:'long',
+    year: 'numeric'
+}
+let optionstwo = {
+    hour: 'numeric',
+    minute: 'numeric'
 }
 
-sum(5, 88);
-
-
-//Задание 3
-//Создать функцию "угадай число". Она принимает число от 1 до 10 (обязательно проверить, что число не больше 10 и не меньше 0). Генерирует рандомное число от 1 до 10 и сравнивает с заданным числом.
-//Если они совпали, то возвращает “Вы выиграли”, если нет - то “Вы не угадали, ваше число -  ...,  а выпало число ...”
-//Функция создания случайного числа уже была ранее в материалах, в задаче по созданию случайного цвета.
-//Написать функцию в стрелочном синтаксисе.
-
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min;
-}
-
-const guessNumber = (number) => {
-    const randomNumber = getRandomInt(1, 10);
-    if (number <= 10 && >= 1){
-        console.log('Вы выиграли');
-    } else {`Вы не угадали, ваше число ${guessNumber}, а выпало число ${number}`}
-}
- guessNumber(5)
-
-
- //   Задание 4
-//Напишите функцию copyArr(arr), которая копирует массив, не изменяя оригинал. Используйте подходящий метод массива - forEach или map.
-
- const arr = [22, 4, 5, 7];
- const copyArr = arr.slice();
- console.log(copyArr);
-
-
- //Задание 5
-//Напишите функцию, которая принимает массив имен и возвращает новый массив, в котором каждое имя будет иметь приставку "Hello, "
-
-const name =[
-    {
-        usersNames: 'Vasya',
-    },
-    {
-        usersNames: 'Kolya',
-    },
-    {
-        usersNames: 'Kolya',
-    }
-]
-const creatArrayHello = array =  array.map(item) => {
-    return('Hello' + name)
-}
-console.log(creatArrayHello); 
-
-//Задание 6
-//Напишите функцию, которая принимает массив объектов пользователей и возвращает новый массив, содержащий только их имена.
-const users =[
-    {
-        usersNames: 'Vasya',
-        isAdmin: true
-    },
-    {
-        usersNames: 'Kolya',
-        isAdmin: false
-    },
-    {
-        usersNames: 'Kolya',
-        isAdmin: false
-    }
-]
- const createNewArray = array => array.map(item => item.usersNames);
- console.log(createNewArray(users))
-
-//    Задание 7
-//Создайте функцию sumObjectValues, которая будет суммировать все значения свойств, которые являются числами. Сумму чисел необходимо вернуть из функции.
-//Проверить работу функции можно на объекте:
-
-const objectWithNumbers = {
-  a: 10,
-  b: 20,
-  c: 'string',
-  d: 12,
-}
-
-let  sumObjectValues = (objectWithNumbers) => {
-    let sumObjectValues = 0;
-    for(let key in objectWithNumbers){
-        if (typeof objectWithNumbers[key] == 'number'){
-            sumObjectValues += objectWithNumbers[key];
-        }
-    }
-    return sumObjectValues;
-}
-console.log(sumObjectValues(objectWithNumbers));
-
-
-//Задание 8
-//Напишите функцию ucFirst(str), возвращающую строку str с заглавным первым символом.
-//Вам понадобятся методы строк.
-
-
-let ucFirst = (str) => {
-    if (!str) return str;
-    return str[0].toUpperCase() + str.slice(1);
-}
-console.log(ucFirst('kirill'));
-
-
-//Задание 9
-//Напишите функцию checkSpam(str), возвращающую true, если str содержит 'badWord' или 'XXX', а иначе false.
-//Функция должна быть нечувствительна к регистру.
-
-const bad1 = 'badWord';
-const bad2 = 'XXX';
-
-const checkSpam = string => string.toLowerCase().includes(bad1.toLowerCase()) ? true : false;
-
-checkSpam('Hello');
-checkSpam('Hello XXX');
-checkSpam('Hello XxX');
-checkSpam('Hello badWORD');
-
+let hour = date.getHours();
+let minute = date.getMinutes();
+console.log('Сегодня ' +  date.toLocaleDateString('ru-RU', optionsone));
+console.log((hour) + ' часов ' + (minute) + ' минут');
