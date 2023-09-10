@@ -29,20 +29,19 @@ sum(5, 88);
 //Функция создания случайного числа уже была ранее в материалах, в задаче по созданию случайного цвета.
 //Написать функцию в стрелочном синтаксисе.
 
-let guessnumber = prompt('Введите число');
-const getRandomNumbers = () => {
-    if(getRandomNumbers === guessnumber){
-        console.log('Вы выиграли')
-    } else {
-        console.log(`Вы не угадали, ваше число ${guessnumber}, а выпало число ${getRandomInteger}`)
-    }
-}
-
-function getRandomInteger(min, max) {
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-    console.log(getRandomInteger(1,10));  // Тут возникли трудности 
+const guessNumber = (number) => {
+    const randomNumber = getRandomInt(1, 10);
+    if (number <= 10 && >= 1){
+        console.log('Вы выиграли');
+    } else {`Вы не угадали, ваше число ${guessNumber}, а выпало число ${number}`}
+}
+ guessNumber(5)
 
 
  //   Задание 4
@@ -56,15 +55,40 @@ function getRandomInteger(min, max) {
  //Задание 5
 //Напишите функцию, которая принимает массив имен и возвращает новый массив, в котором каждое имя будет иметь приставку "Hello, "
 
-const names = ['Vasya', 'Olya', 'Kolya'];
-const helloName = names.map(item) => {
-    return('Hello' + names)
+const name =[
+    {
+        usersNames: 'Vasya',
+    },
+    {
+        usersNames: 'Kolya',
+    },
+    {
+        usersNames: 'Kolya',
+    }
+]
+const creatArrayHello = array =  array.map(item) => {
+    return('Hello' + name)
 }
-onsole.log(helloName); // Не работает!
+console.log(creatArrayHello); 
 
 //Задание 6
 //Напишите функцию, которая принимает массив объектов пользователей и возвращает новый массив, содержащий только их имена.
-
+const users =[
+    {
+        usersNames: 'Vasya',
+        isAdmin: true
+    },
+    {
+        usersNames: 'Kolya',
+        isAdmin: false
+    },
+    {
+        usersNames: 'Kolya',
+        isAdmin: false
+    }
+]
+ const createNewArray = array => array.map(item => item.usersNames);
+ console.log(createNewArray(users))
 
 //    Задание 7
 //Создайте функцию sumObjectValues, которая будет суммировать все значения свойств, которые являются числами. Сумму чисел необходимо вернуть из функции.
@@ -105,10 +129,13 @@ console.log(ucFirst('kirill'));
 //Напишите функцию checkSpam(str), возвращающую true, если str содержит 'badWord' или 'XXX', а иначе false.
 //Функция должна быть нечувствительна к регистру.
 
-let checkSpam = (str) => {
-    let lowerStr = str.toLowerCase();
-    return lowerStr.includes('badWord') || lowerStr.includes('XXX');
-  }
-  
-  console.log(checkSpam('ok badWord'));
-  console.log(checkSpam('no XXX'));
+const bad1 = 'badWord';
+const bad2 = 'XXX';
+
+const checkSpam = string => string.toLowerCase().includes(bad1.toLowerCase()) ? true : false;
+
+checkSpam('Hello');
+checkSpam('Hello XXX');
+checkSpam('Hello XxX');
+checkSpam('Hello badWORD');
+
