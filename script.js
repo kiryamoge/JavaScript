@@ -38,7 +38,13 @@ let stations = [
     'HUD5767ghtyfyr4536dh45dg45dg3;Huddersfield'
     
     ];
- stations.forEach(item => newstations.slice(0, 3))
+ stations.forEach(item => {
+  const code = item.slice(0, 3);
+  const number = item.indexOf(';');
+  const station = item.slice(number + 1);
+  console.log((code) + (number) + (station));
+ })
+ 
 
 //Задание 12
 //Напишите функцию unique(arr), которая принимает массив, а возвращает новый массив, содержащий только уникальные элементы arr.
@@ -91,8 +97,8 @@ const verifyCats = (catsJane, catsJulia) => {
     }
   })
 }
-verifyCats([4, 5, 3, 11, 6, 2, 4, 1, 5, 9], [2, 4, 5, 1, 13, 2, 15, 8, 3, 7])
-verifyCats([3, 5, 9, 14, 1, 2, 6, 8, 3, 10], [8, 2, 10, 1, 2, 5, 6, 3, 1, 4])
+verifyCats([4, 5, 3, 11, 6, 2, 4, 1, 5, 9], [2, 4, 5, 1, 13, 2, 15, 8, 3, 7]);
+verifyCats([3, 5, 9, 14, 1, 2, 6, 8, 3, 10], [8, 2, 10, 1, 2, 5, 6, 3, 1, 4]);
 
 //Задание 14
 //Решить 4 задание из прошлой темы, используя метод filter
@@ -103,24 +109,60 @@ verifyCats([3, 5, 9, 14, 1, 2, 6, 8, 3, 10], [8, 2, 10, 1, 2, 5, 6, 3, 1, 4])
 //запуск функции filterFor(arr, 3.11) дает результат [4,5,8]
 
 let arr = [5, 4, 3, 8, 0];
-let resultfilter = arr.filterFor((arr, a) => {
-    return arr >= a;
-    return resultfilter;
-})
-filterFor(arr, 3);
-console.log(resultfilter(arr));
 
+function filterFor(arr, a) {
+  let filteredArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] >= a) {
+      filteredArr.push(arr[i]);
+    }
+  }
+  return filteredArr;
+}
+
+console.log(filterFor(arr, 5));     
+console.log(filterFor(arr, 10));   
+console.log(filterFor(arr, 3.11)); 
 
 
 //Задание 15
 //Описать функцию, которая принимает массив строк и возвращает массив, содержащий только строки более 3-х символов. Проверить работу функции на примере:  ['yes', 'hello', 'no', 'easycode', 'what'].
 const words =  ['yes', 'hello', 'no', 'easycode', 'what'];
 const wordsFilter = arr => {
-  return arr.filter(item => item.length >= 3).length;
+  return arr.filter(item => item.length >= 3);
 }
 console.log(wordsFilter(words));
 
 
+//Задание 16
+//Отсортируйте массив массивов так, чтобы вначале располагались наименьшие массивы (размер массива определяется его длиной): [ [14, 45], [1], ['a', 'c', 'd'] ] → [ [1], [14, 45], ['a', 'c', 'd'] 
+//ПОДСКАЗКА. Для правильной сортировки метод sort принимает функцию, параметры которой a и b - это элементы массива. В данной задаче элементы массива, то есть параметры a и b, сами являются массивами и обладают всеми свойствами массивов.
+
+let arrtwo = [[14, 45], [1], ['a', 'c', 'd']];
+arrtwo.sort(function(a, b) {
+  return a.length - b.length;
+})
+console.log(arrtwo); 
+
+//Задание 17
+//Создайте функцию getAverageHumanAge, которая принимает массив возрастов кошек (catAges) и выполняет следующие действия по порядку:
+//1. Рассчитывает человеческий возраст по следующей формуле: если возраст кошки <= 2 года, человеческий возраст = возраст кошки * 10. Если кошке больше 2 лет, человеческий возраст = возраст кошки * 7. (сделать через map)
+//2. Исключает всех кошек младше 18 человеческих лет. (сделать через filter)
+//3. Возвращает средний человеческий возраст для всех взрослых кошек. (сумму для среднего посчитать через reduce)
+//Вызовите функцию для обоих наборов тестовых данных.
+//Тестовые данные:
+//1: [7 , 3, 2, 4, 1, 15, 8, 1, 9, 2]
+//2: [1, 16, 12, 4, 5, 1, 3, 11, 7, 2]
+//В задании необходимо использовать методы массивов: map, filter, reduce
+
+const getAverageHumanAge = array => {
+  const humanAges = array.map(item => item <= 2 ? item * 10 : item * 7);
+  const adultCats = humanAges.filter(item => item >= 18);
+  const sum = adultCats.reduce((acc, item) => acc + item, 0);
+  return sum / adultCats.length;
+}
+getAverageHumanAge[7 , 3, 2, 4, 1, 15, 8, 1, 9, 2];
+console.log(getAverageHumanAge[1, 16, 12, 4, 5, 1, 3, 11, 7, 2]);
 
 //Задание 1 Встроенные объекты.
 //Примените каждый из этих методов округления к трем числам: 5.4, 5.5, 5.6:
